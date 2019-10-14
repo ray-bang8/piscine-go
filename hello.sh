@@ -1,1 +1,1 @@
-Hello {ray-bang8} !
+Hello {ray-bang8} 
