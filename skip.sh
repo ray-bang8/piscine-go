@@ -1,1 +1,1 @@
-ls -l awk | '0 == NR % 2'
+ls -l | awk '0 == NR % 2'
