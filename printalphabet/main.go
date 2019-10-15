@@ -1,12 +1,14 @@
 package main
 
 import (
-	"fmt"
+ "fmt"
 )
-func main(){
-	for start := byte('a'); start <= byte('z'); start++ {
-		fmt.Print(string(start))
-	}
 
-	fmt.Println()
+func main() {
+
+ for start := byte('a'); start <= byte('z'); start++ {
+  fmt.Print(string(start) + " ")
+ }
+
+ fmt.Println()
 }
