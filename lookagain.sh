@@ -1,1 +1,1 @@
-find -name "*.sh" | sed 's/sh/ /g' | cat -e | tr -d './' 
+find -name "*.sh" -printf "%f\n" | cut -d "." -f1
