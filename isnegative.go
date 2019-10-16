@@ -1,13 +1,13 @@
 package piscine
 
-import "fmt"
+import "github.com/01-edu/z01"
 
 func IsNegative(nb int) {
 
 	if nb >= 0 {
-		fmt.Println('F')
+		fmt.PrintRune('F')
 	} else {
-		fmt.Println('T')
+		fmt.PrintRune('T')
 	}
-		fmt.Println('\n')
+	fmt.PrintRune('\n')
 }
