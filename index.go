@@ -26,3 +26,10 @@ func Index(s string, toFind string) int {
 	}
 	return index - nbFind + 1
 }
+func StrLen(str string) int {
+	a := 0
+	for range str {
+		a++
+	}
+	return a
+}
