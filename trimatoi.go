@@ -15,9 +15,9 @@ func TrimAtoi(s string) int {
 				num++
 			}
 			final = final*10 + num
-		} else if meow[i] == '+' {
+		} else if meow[i] == '+' && final == 0 {
 			plus++
-		} else if meow[i] == '-' {
+		} else if meow[i] == '-' && final == 0 {
 			minus++
 
 		} else {
