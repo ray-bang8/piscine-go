@@ -10,7 +10,7 @@ func Capitalize(s string) string {
 		if newstr[i] >= 'a' && newstr[i] <= 'z' && (newstr[i-1] < 'a' && newstr[i-1] > 'Z' || newstr[i-1] < 'A' && newstr[i-1] > '9' || newstr[i-1] < '0' || newstr[i-1] > 'z') {
 			newstr[i] = newstr[i] - 32
 		}
-		if newstr[i] >= 'A' && newstr[i] <= 'Z' && (newstr[i-1] >= '0' && newstr[i-1] <= '9' || newstr[i-1] <= 'a' && newstr[i-1] >= 'z' || newstr[i-1] >= 'A' && newstr[i-1] <= 'Z') {
+		if newstr[i] >= 'A' && newstr[i] <= 'Z' && (newstr[i-1] >= '0' && newstr[i-1] <= '9' || newstr[i-1] >= 'a' && newstr[i-1] <= 'z' || newstr[i-1] >= 'A' && newstr[i-1] <= 'Z') {
 			newstr[i] = newstr[i] + 32
 		}
 	}
