@@ -7,7 +7,6 @@ import (
 )
 
 func main() {
-	str := "Cox 78 World!    4455 /"
-	nb := piscine.AlphaCount(str)
-	fmt.Println(nb)
+	toConcat := []string{"Hello!", " How", " are", " you?"}
+	fmt.Println(piscine.Join(toConcat, ":"))
 }
