@@ -3,7 +3,6 @@ package piscine
 func Atoi(s string) int {
 	nb := S(s)
 	meow := []rune(s)
-	s = ""
 	final := 0
 	plus := 0
 	minus := 0
