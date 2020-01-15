@@ -1,0 +1,72 @@
+func PrintNbrBase(nbr int, base string) {
+	negative := false
+	if StrLen(base) == 10 && base == "0123456789" {
+		s := ""
+		ost := 0
+		if nbr == 0 {
+			z01.PrintRune('0')
+		}
+		min := 0
+		for {
+			if nbr == 0 {
+				break
+			}
+			if nbr < 0 {
+				ost = -(nbr % 10)
+			} else {
+				ost = nbr % 10
+			}
+			s = string(ost+48) + s
+			if nbr/10 == 0 && nbr < 0 {
+				min++
+			}
+			nbr = nbr / 10
+		}
+		if min == 1 {
+			s = "-" + s
+		}
+		for i := range s {
+			z01.PrintRune(rune(s[i]))
+		}
+		return
+	}
+	no := ""
+	if StrLen(base) < 2 {
+		no = "NV"
+	} else {
+		for i := 0; i < StrLen(base); i++ {
+			for j := i + 1; j < StrLen(base); j++ {
+				if base[i] == base[j] ||
+					base[i] == '+' || base[j] == '+' ||
+					base[i] == '-' || base[j] == '-' {
+					no = "NV"
+				}
+			}
+		}
+	}
+	if no == "NV" {
+		for i := range no {
+			z01.PrintRune(rune(no[i]))
+		}
+	} else {
+		if nbr < 0 {
+			nbr *= -1
+			negative = true
+		}
+		SeeNumber(nbr, base, negative)
+	}
+}
+func SeeNumber(nbr int, base string, negative bool) {
+	array := []rune(base)
+	if nbr >= 0 && nbr < StrLen(base) {
+		if negative == true {
+			z01.PrintRune('-')
+			z01.PrintRune(array[nbr])
+			return
+		}
+		z01.PrintRune(array[nbr])
+		return
+	}
+	SeeNumber(nbr/StrLen(base), base, negative)
+	z01.PrintRune(array[nbr%StrLen(base)])
+}
