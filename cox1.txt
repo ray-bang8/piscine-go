@@ -1,0 +1,364 @@
+1)func COUNTDOWN() {
+	for i := '9'; i >= '0'; i-- {
+		z01.PrintRune(i)
+	}
+	z01.PrintRune(10)
+}
+_________________________________
+_________________________________
+
+2)func FirstRune(s string) rune {
+
+	cox := []rune(s)
+	return cox[0]
+}
+_________________________________
+3)func LastRune(s string) rune {
+	m := 0
+	ms := []rune(s)
+	for range s {
+
+		m++
+	}
+	return ms[m-1]
+
+}____________________________
+4)func ROT13() {
+	arg := os.Args[1:]
+	if len(arg) == 1 {
+		massiv := []rune(arg[0])
+		for i := 0; i < len(massiv); i++ {
+			if massiv[i] >= 'a' && massiv[i] <= 'z' {
+				if massiv[i] > 'm' {
+					massiv[i] = massiv[i] - 13
+				} else {
+					massiv[i] = massiv[i] + 13
+				}
+			} else if massiv[i] >= 'A' && massiv[i] <= 'Z' {
+				if massiv[i] > 'M' {
+					massiv[i] = massiv[i] - 13
+				} else {
+					massiv[i] = massiv[i] + 13
+				}
+			}
+		}
+		for _, v := range massiv {
+			z01.PrintRune(v)
+		}
+
+	}
+	z01.PrintRune('\n')
+}
+_________________________________
+5)func LASTWORD() {
+	if len(os.Args) == 2 {
+		arg := os.Args[1]
+		var len, count int
+		var word string
+		for _, j := range arg {
+			if j != ' ' && j != '\n' && j != '\t' {
+				word += string(j)
+			} else if (j == ' ' || j == '\n' || j == '\t') && word != "" {
+				word, len = "", len+1
+			}
+		}
+		if word != "" {
+			len++ //last word
+		}
+
+		word = ""
+		answer := make([]string, len+1)
+		for _, j := range arg {
+			if j != ' ' && j != '\n' && j != '\t' {
+				word += string(j)
+			} else if (j == ' ' || j == '\n' || j == '\t') && word != "" {
+				answer[count] = word
+				word, count = "", count+1
+			}
+		}
+		if word != "" {
+			answer[count] = word //last word
+		}
+		for _, j := range answer[len-1] {
+			z01.PrintRune(j)
+		}
+		z01.PrintRune('\n')
+	} else {
+		z01.PrintRune(10)
+	}	
+}
+________________________
+6)func TABMULT() {
+	if len(os.Args) == 2 {
+		arg := os.Args[1]
+		x := Atoi(arg)
+		if x > 0 {
+			for i := 1; i <= 9; i++ {
+				z := x * i
+				fmt.Printf("%v x %v = %v\n", i, x, z)
+			}
+		}
+	}
+}
+func Atoi(s string) int {
+	len := 0
+	for range s {
+		len++
+	}
+	plus := 0
+	minus := 0
+	final := 0
+	count := 0
+	str := []rune(s)
+	for i := 0; i < len; i++ {
+		if str[i] >= '0' && str[i] <= '9' {
+			count = 0
+			for j := '0'; j < str[i]; j++ {
+				count++
+			}
+			final = final*10 + count
+		} else if str[i] == '-' && str[i] == 0 {
+			minus++
+		} else if str[i] == '+' && str[i] == 0 {
+			plus++
+		} else {
+			return 0
+		}
+
+	}
+	if minus == 1 {
+		final = -final
+	}
+	return final
+}
+_________________________________
+7)func ALPHAMIRROR() {
+	input := os.Args[1]
+	str := []rune(input)
+	for i := range str {
+		if !(str[i] >= 'a' && str[i] <= 'z') && !(str[i] >= 'A' && str[i] <= 'Z') {
+			continue
+		}
+		if str[i] >= 'a' && str[i] <= 'm' {
+			count := 25
+			for j := 'a'; j < str[i]; j++ {
+				count -= 2
+			}
+			str[i] = str[i] + rune(count)
+		} else if str[i] >= 'n' && str[i] <= 'z' {
+			count := 25
+			for j := 'z'; j > str[i]; j-- {
+				count -= 2
+			}
+			str[i] = str[i] - rune(count)
+		} else if str[i] >= 'A' && str[i] <= 'M' {
+			count := 25
+			for j := 'A'; j < str[i]; j++ {
+				count -= 2
+			}
+			str[i] = str[i] + rune(count)
+		} else if str[i] >= 'N' && str[i] <= 'Z' {
+			count := 25
+			for j := 'Z'; j > str[i]; j-- {
+				count -= 2
+			}
+			str[i] = str[i] - rune(count)
+		}
+	}
+
+	for i := range str {
+		z01.PrintRune(str[i])
+	} else {
+		z01.PrintRune(10)
+	}	
+}
+_________________________________
+8)func COMPARE() {
+	if len(os.Args) == 3 {
+		if os.Args[1] == os.Args[2] {
+			z01.PrintRune('0')
+		} else if os.Args[1] > os.Args[2] {
+			z01.PrintRune('1')
+		} else {
+			z01.PrintRune('-')
+			z01.PrintRune('1')
+		}
+
+		z01.PrintRune('\n')
+	}
+	z01.PrintRune('\n')
+
+}
+________________________
+9)func DOOP() {
+	arg := os.Args[1:]
+	result := 0
+	for _, r := range arg[0] {
+		if !(rune(r) >= '0' && rune(r) <= '9' || rune(r) == '-') {
+			fmt.Println(result)
+			return
+		}
+	}
+	for _, r := range arg[2] {
+		if !(rune(r) >= '0' && rune(r) <= '9' || rune(r) == '-') {
+			fmt.Println(result)
+			return
+		}
+	}
+
+	if len(arg) == 3 {
+		if arg[1] == "+" {
+			result = Atoi(arg[0]) + Atoi(arg[2])
+		} else if arg[1] == "-" {
+			result = Atoi(arg[0]) - Atoi(arg[2])
+		} else if arg[1] == "/" {
+			if arg[2] == "0" {
+				fmt.Println("No division by 0")
+				return
+			}
+			result = Atoi(arg[0]) / Atoi(arg[2])
+		} else if arg[1] == "*" {
+			result = Atoi(arg[0]) * Atoi(arg[2])
+		} else if arg[1] == "%" {
+			if arg[2] == "0" {
+				fmt.Println("No modulo by 0")
+				return
+			}
+			result = Atoi(arg[0]) % Atoi(arg[2])
+		}
+
+	}
+	fmt.Println(result)
+
+}
+func Atoi(s string) int {
+	len := 0
+	for range s {
+		len++
+	}
+	plus := 0
+	minus := 0
+	final := 0
+	count := 0
+	str := []rune(s)
+	for i := 0; i < len; i++ {
+		if str[i] >= '0' && str[i] <= '9' {
+			count = 0
+			for j := '0'; j < str[i]; j++ {
+				count++
+			}
+			final = final*10 + count
+		} else if str[i] == '+' && i == 0 {
+			plus++
+		} else if str[i] == '-' && i == 0 {
+			minus++
+		} else {
+			return 0
+		}
+	}
+
+	if minus == 1 {
+		final = -final
+	}
+	return final
+}
+_________________________________
+10)func ISPOWEROF2() {
+	arg := os.Args[1:]
+	if len(arg) == 1 {
+		x, err := strconv.Atoi(arg[0])
+		if err != nil {
+			fmt.Println(err.Error())
+		} else if x != 0 && (x&(x-1)) == 0 {
+			fmt.Println(true)
+		} else {
+			fmt.Println(false)
+		}
+
+	} else {
+		fmt.Println()
+	}
+}
+_________________________________
+func ISPOWEROFF() {
+	if len(os.Args) == 2 {
+		x, err := strconv.Atoi(os.Args[1])
+		if err != nil {
+			fmt.Println(err.Error())
+		} else {
+			for x%2 == 0 {
+				if x == 0 {
+					break
+				}
+				x = x / 2
+			}
+			if x == 1 {
+				fmt.Println(true)
+			}
+			if x == 0 || x != 1 {
+				fmt.Println(false)
+			}
+		}
+	} else {
+		fmt.Println()
+	}
+}
+_________________________________
+11)func UNION() {
+	if len(os.Args) == 3 {
+		s1 := os.Args[1]
+		s2 := os.Args[2]
+		sum := s1 + s2
+		mas := []rune(sum)
+		for i := 0; i < len(mas); i++ {
+			for k := i + 1; k < len(mas); k++ {
+				if mas[i] == mas[k] {
+					mas[k] = 0
+				}
+			}
+		}
+		fmt.Println(string(mas))
+
+	} else {
+		fmt.Println()
+	}
+}
+_____________________________________
+12)func INTER() {
+	answer := ""
+	if len(os.Args) == 3 {
+		str1 := os.Args[1]
+		str2 := os.Args[2]
+		for i := 0; i < len(str1); i++ {
+			for j := 0; j < len(str2); j++ {
+				if str2[j] == str1[i] {
+					doesNotExist := true
+					for k := range answer {
+						if str1[i] == answer[k] {
+							doesNotExist = false // str1[k] = 0
+						}
+					}
+					if doesNotExist {
+						answer += string(str1[i])
+					}
+				}
+				
+			}
+		}
+		fmt.Println(answer)
+	} else {
+		fmt.Println()
+	}
+}
+_________________________________
+11)func SwapBits(octet byte) byte {
+	return ((octet&0x0F)<<4 | (octet&0xF0)>>4)
+}
+_________________________________
+func SwapBits(octet byte) byte {
+	var div, mod byte
+
+	div = octet / 16
+	mod = octet % 16
+	return mod*16 + div
+}
