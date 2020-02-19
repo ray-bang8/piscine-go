@@ -1,4 +1,4 @@
-func ALPHAMIRROR() {
+func main () {
 	input := os.Args[1]
 	str := []rune(input)
 	for i := range str {
