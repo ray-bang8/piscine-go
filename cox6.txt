@@ -1,0 +1,173 @@
+21)func REVWSTR() {
+
+    	if len(os.Args) == 2 {
+    		str := SplitWhiteSpaces(os.Args[1])
+    		for i := len(str) - 1; i >= 0; i-- {
+    			fmt.Print(string(str[i]) + " ")
+    		}
+    		fmt.Println()
+    	} else {
+    		fmt.Println()
+    	}
+    }
+    func SplitWhiteSpaces(str string) []string {
+    	size := 1
+    	var result []string
+    	lenstr := 0
+    	for i := range str {
+    		lenstr = i + 1
+    	}
+
+    	for i := 0; i < lenstr-1; i++ {
+    		if str[i] == ' ' || str[i] == '\t' || str[i] == '\n' {
+    			size++
+    			if i > 0 {
+    				if str[i-1] == ' ' || str[i-1] == '\t' || str[i-1] == '\n' {
+    					size--
+    				}
+    			}
+    		}
+    	}
+
+    	result = make([]string, size)
+
+    	tempstr := ""
+    	j := 0
+    	for i := 0; i <= lenstr; i++ {
+    		if i == lenstr {
+    			if tempstr != "" {
+    				result[j] = tempstr
+    			}
+    		} else if str[i] != ' ' && str[i] != '\t' && str[i] != '\n' {
+    			tempstr = tempstr + string(str[i])
+    		} else {
+    			if tempstr != "" {
+    				result[j] = tempstr
+    				j++
+    			}
+    			tempstr = ""
+    		}
+    	}
+    	return result
+    }
+    _________________________________
+    22)func FPRIME() {
+    	if len(os.Args) == 2 {
+    		v := Atoi(os.Args[1])
+    		count := 0
+    		l := append(PF(v))
+    		for i := 0; i < len(l); i++ {
+    			count++
+    			if count >= i && i > 0 {
+    				fmt.Print("*")
+    			}
+    			fmt.Print(l[i])
+    		}
+    		fmt.Println()
+    	} else {
+    		fmt.Println()
+    	}
+    }
+    func PF(x int) []rune {
+    	f := []rune{}
+    	c := 2
+    	for c <= x {
+    		if x%c == 0 {
+    			f = append(f, rune(c))
+    			x = x / c
+    		} else {
+    			c++
+    		}
+
+    	}
+    	return f
+    }
+   
+    _________________________________
+    23)func ADDPRIMESUM() {
+
+    	if len(os.Args) == 2 {
+    		nbr := Atoi(os.Args[1])
+    		printPrime(nbr)
+
+    	} else {
+    		fmt.Println("0")
+    	}
+    }
+
+    func IsPrime(value int) bool {
+    	if value <= 1 {
+    		return false
+    	}
+    	for i := 2; i < value; i++ {
+    		if value%i == 0 {
+    			return false
+    		}
+    	}
+    	return true
+    }
+
+    func printPrime(n int) int {
+    	sum := 0
+    	for i := 2; i <= n; i++ {
+    		if IsPrime(i) {
+    			sum += i
+
+    			//fmt.Println(sum)
+    		}
+
+    	}
+    	fmt.Println(sum)
+    	return sum
+    }
+ 
+    ________________________________
+    24)func AtoiBase(s string, base string) int {
+
+    	indx := 0
+    	for _, res := range base {
+    		if string(res) == "-" || string(res) == "+" || strings.Count(base, string(res)) > 1 { //nao pode ser menos de 2 numeros a base e nao aceita +-
+    			indx = 1
+    			break
+    		}
+
+    	}
+    	if indx == 1 || len(base) < 2 { //se for menos de 2 a base, retorna zero
+    		return 0
+    	} else {
+    		result := 0
+    		for i, res := range s {
+    			ind := strings.Index(base, string(res))
+    			result += ind * RecursivePower(len(base), len(s)-1-i)
+    		}
+    		return result
+    	}
+    }
+
+    func Index(s string, toFind string) int {
+    	newstr := []rune(s)
+    	nb := StrLen(s)
+    	strFind := []rune(toFind)
+    	nbFind := StrLox(toFind)
+    	match := 0
+    	index := 0
+    	if nbFind == 0 {
+    		return 0
+    	}
+    	for i := 0; i < nbFind; i++ {
+    		for j := index; j < nb; j++ {
+    			match = 0
+    			if strFind[i] == newstr[j] {
+    				match = 1
+    				index = j
+    				break
+    			}
+
+    		}
+    		if match == 0 {
+    			return -1
+    		}
+    	}
+    	return index - nbFind + 1
+    }
+  

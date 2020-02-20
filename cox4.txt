@@ -1,0 +1,92 @@
+  13)func SwapBits(octet byte) byte {
+	return ((octet&0x0F)<<4 | (octet&0xF0)>>4)
+}
+_________________________________
+func SwapBits(octet byte) byte {
+	var div, mod byte
+
+	div = octet / 16
+	mod = octet % 16
+	return mod*16 + div
+}
+  14)func REPEATALPHA() {
+    	arg := os.Args
+    	count := 0
+    	if len(arg) == 2 {
+
+    		arr := []rune(arg[1])
+    		for i := 0; i < len(arr); i++ {
+
+    			if arr[i] >= 'a' && arr[i] <= 'z' || arr[i] >= 'A' && arr[i] <= 'Z' {
+
+    				if arr[i] >= 'a' && arr[i] <= 'z' {
+    					count = int(arr[i]-'a') + 1
+    				}
+
+    				if arr[i] >= 'A' && arr[i] <= 'Z' {
+    					count = int(arr[i]-'A') + 1
+    				}
+    				for ; count > 0; count-- {
+    					z01.PrintRune(arr[i])
+    				}
+    			}
+    		}
+    		z01.PrintRune('\n')
+    	} else {
+    		z01.PrintRune('\n')
+    	}
+    }
+    _____________________________________
+    15)func SortWordArr(str []string) {
+
+    	for i := 0; i < len(str); i++ {
+    		for j := i + 1; j < len(str); j++ {
+    			if str[i] > str[j] {
+    				str[i], str[j] = str[j], str[i]
+    			}
+    		}
+    	}
+
+    }
+    func main() {
+    	result := []string{"a", "A", "1", "b", "B", "2", "c", "C", "3"}
+    	SortWordArr(result)
+
+    	fmt.Println(result)
+    }
+    _______________________________________
+    16)func PRINTHEX() {
+    	arg := os.Args
+    	if len(arg) == 2 {
+    		n := Atoi(arg[1])
+    		if n == 0 {
+    			z01.PrintRune(0)
+    		}
+    		var arr [70]rune
+    		i := 0
+    		for n != 0 {
+    			if n < 0 {
+    				z01.PrintRune('-')
+    				n = n / -1
+    			}
+    			temp := n % 16
+    			if temp < 10 {
+    				arr[i] = rune(temp + 48)
+    				i++
+    			} else {
+    				arr[i] = rune(temp + 87)
+    				i++
+    			}
+    			n = n / 16
+    		}
+    		for j := i - 1; j >= 0; j-- {
+    			z01.PrintRune(arr[j])
+    		}
+    		z01.PrintRune('\n')
+
+    	} else {
+    		z01.PrintRune('\n')
+    	}
+
+    }
+    

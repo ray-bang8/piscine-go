@@ -1,0 +1,183 @@
+25)func Itoa(nbr int) string {
+    	result = ""
+    	t := 1
+
+    	if nbr < 0 {
+    		result += "-"
+    		t = -1
+    	}
+    	if nbr != 0 {
+    		q := (nbr / 10) * t
+    		if q != 0 {
+    			Itoa(q)
+    		}
+    		d := ((nbr % 10) * t) + '0'
+    		result += string(rune(d))
+    	} else {
+    		result += "0"
+    	}
+
+    	return result
+    }
+    ____________________________
+    26)func PrintMemory(arr [10]int) {
+    	index := 0
+    	for i := 0; i < len(arr); i++ {
+    		index++
+    		if index == 5 || index == 9 {
+    			fmt.Println()
+    		}
+
+    		if arr[i] != 0 {
+    			// PrintNbrBase(arr[i],"0123456789ABCDEF")
+    			dec2hexa(arr[i])
+    			fmt.Print("00 0000 ")
+    		} else {
+    			fmt.Println("0000 0000")
+    		}
+
+    	}
+
+    }
+
+    func dec2hexa(n int) {
+    	var arr [100]rune
+    	i := 0
+    	for n != 0 {
+    		temp := n % 16
+    		if temp < 10 {
+    			arr[i] = rune(temp + 48)
+    			i++
+    		} else {
+    			arr[i] = rune(temp + 87)
+    			i++
+    		}
+    		n = n / 16
+    	}
+    	for j := i - 1; j >= 0; j-- {
+    		z01.PrintRune(arr[j])
+    	}
+    }
+    27)func pop(stack []int) (int, []int) {
+	// fmt.Println(stack[len(stack)-1], stack[:len(stack)-1])
+	return stack[len(stack)-1], stack[:len(stack)-1]
+}
+
+func RpnCalc(s []string) int {
+	// ops -> + - * / %
+	stackD := []int{}
+	first := 0
+	last := 0
+
+	for _, v := range s {
+		for _, vv := range v {
+			switch vv {
+
+			case '+':
+				last, stackD = pop(stackD)
+				first, stackD = pop(stackD)
+				stackD = append(stackD, first+last)
+
+			case '-':
+				last, stackD = pop(stackD)
+				first, stackD = pop(stackD)
+				stackD = append(stackD, first-last)
+
+			case '*':
+				last, stackD = pop(stackD)
+				first, stackD = pop(stackD)
+				stackD = append(stackD, first*last)
+
+			case '/':
+				last, stackD = pop(stackD)
+				first, stackD = pop(stackD)
+				stackD = append(stackD, first/last)
+
+			case '%':
+				last, stackD = pop(stackD)
+				first, stackD = pop(stackD)
+				stackD = append(stackD, first%last)
+
+			default:
+				num, err := strconv.Atoi(string(vv))
+				if err != nil {
+					fmt.Println("Error!")
+				} else {
+					stackD = append(stackD, num)
+				}
+			}
+
+		}
+
+	}
+	result := stackD[0]
+
+	return result
+
+}
+    _________________________________
+    28)func BRACKEts() {
+    	if len(os.Args) == 1 {
+    		z01.PrintRune('\n')
+    		return
+    	}
+
+    	for i := 1; i < len(os.Args); i++ {
+    		arr := []rune(os.Args[i])
+    		var stack []rune
+
+    		if os.Args[i] == "" {
+    			PrintStr("OK")
+    			z01.PrintRune('\n')
+    		} else {
+    			for j := 0; j < StrLen(os.Args[i]); j++ {
+    				if arr[j] == '(' || arr[j] == '[' || arr[j] == '{' {
+    					stack = append(stack, arr[j])
+    				} else {
+    					switch arr[j] {
+    					case ')':
+    						if stack[len(stack)-1] == '(' {
+    							stack = stack[0 : len(stack)-1]
+
+    						}
+    					case ']':
+    						if stack[len(stack)-1] == '[' {
+    							stack = stack[0 : len(stack)-1]
+
+    						}
+    					case '}':
+    						if stack[len(stack)-1] == '{' {
+    							stack = stack[0 : len(stack)-1]
+    						}
+    					}
+    				}
+    			}
+
+    			if len(stack) == 0 {
+    				PrintStr("OK")
+    				z01.PrintRune('\n')
+    			} else {
+    				PrintStr("Error")
+    				z01.PrintRune('\n')
+    			}
+
+    		}
+    	}
+    }
+    func PrintStr(str string) {
+
+    	stringi := []rune(str)
+
+    	for _, letter := range stringi {
+
+    		z01.PrintRune(letter)
+    	}
+
+    }
+    func StrLen(str string) int {
+    	m := 0
+    	for range str {
+    		m++
+    	}
+    	return m
+    }

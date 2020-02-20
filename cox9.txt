@@ -1,0 +1,157 @@
+	33)func AddLinkedNumbers(num1, num2 *NodeAddL) *NodeAddL {
+
+		res := ListToInt(num1) + ListToInt(num2)
+		str := strconv.Itoa(res)
+		firstDigit := int(str[len(str)-1] - 48)
+		list := &NodeAddL{Num: firstDigit}
+		for i := len(str) - 2; i >= 0; i-- {
+			list = pushFront(list, int(str[i]-48))
+		}
+		return list
+	}
+	
+	func ListToInt(num *NodeAddL) int {
+		str := ""
+		current := num
+		for current != nil {
+			str += strconv.Itoa(current.Num)
+			current = current.Next
+		}
+		nbr, _ := strconv.Atoi(str)
+		return nbr
+	}
+	
+	func pushFront(node *NodeAddL, num int) *NodeAddL {
+		a := &NodeAddL{
+			Num:  num,
+			Next: node,
+		}
+		return a
+	}
+	
+	type NodeAddL struct {
+		Next *NodeAddL
+		Num  int
+	}
+     34)func BRAINFUCK() {
+
+    	if len(os.Args) == 1 {
+    		fmt.Println()
+    		return
+    	}
+
+    	arr := make([]byte, 2048)
+    	p := &arr[0]
+    	arg := []rune(os.Args[1])
+
+    	i := 0
+    	j := 0
+
+    	for j < 2048 {
+    		for i < len(arg) {
+    			switch arg[i] {
+    			case '>':
+    				j++
+    				p = &arr[j]
+    			case '<':
+    				j--
+    				p = &arr[j]
+    			case '+':
+    				*p++
+    			case '-':
+    				*p--
+    			case '.':
+    				fmt.Println(string(*p))
+    			case '[':
+    				cont := 0
+
+    				if *p == 0 {
+
+    					for cont >= 0 {
+    						i++
+    						if arg[i] == ']' {
+    							cont--
+    						} else if arg[i] == '[' {
+    							cont++
+    						}
+    					}
+    				}
+    			case ']':
+    				cont := 0
+    				if *p != 0 {
+    					for cont >= 0 {
+    						i--
+    						if arg[i] == '[' {
+    							cont--
+    						} else if arg[i] == ']' {
+    							cont++
+    						}
+    					}
+    				}
+    			}
+
+    			i++
+    		}
+    		j = 2048
+		}
+	35)func Anagram(str1, str2 string) bool {
+
+		if CountLen(str1) != CountLen(str2) {
+			return false
+		}
+	
+		newarg := make([]rune, CountLen(str2))
+		j := 0
+		for _, two := range str2 {
+			if two != ' ' {
+				newarg[j] = two
+				j++
+			}
+		}
+	
+		count := 0
+		for _, one := range str1 {
+			for j, two := range newarg {
+				if one == two {
+					count++
+					newarg[j] = '#'
+					break
+				}
+			}
+		}
+		fmt.Println(string(newarg))
+		return CountLen(str2) == count
+	
+	}
+	
+	func CountLen(str string) int {
+	
+		counter := 0
+	
+		for _, x := range str {
+			if x >= 'a' && x <= 'z' {
+				counter++
+			}
+		}
+		return counter
+	}
+	36)func balancedstring() {
+		input := os.Args[1:]
+		if len(input) != 1 {
+			fmt.Println()
+			return
+		}
+		count := 0
+		bims := 0
+		for _, val := range input[0] {
+			if val == 'C' {
+				count++
+			} else {
+				count--
+			}
+			if count == 0 {
+				bims++
+			}
+		}
+		fmt.Println(bims)
+	}

@@ -1,0 +1,131 @@
+43)func printchessboard() {
+		if len(os.Args[1:]) != 2 {
+			PrintErr()
+			return
+		} else {
+			col, e := strconv.Atoi(os.Args[1])
+			line, er := strconv.Atoi(os.Args[2])
+			if e != nil || er != nil {
+				PrintErr()
+				return
+			}
+	
+			for l := 1; l <= line; l++ {
+				for c := 1; c <= col; c++ {
+					if (isOdd(c) && isOdd(l)) || (!isOdd(c) && !isOdd(l)) {
+						z01.PrintRune('#')
+					} else {
+						z01.PrintRune(' ')
+					}
+				}
+				z01.PrintRune('\n')
+			}
+	
+		}
+	}
+	func isOdd(n int) bool {
+		if n%2 == 0 {
+			return false
+		}
+		return true
+	}
+	45)func robottoorigin() {
+		args := os.Args[1:]
+		var UD int
+		var RL int
+		var f string
+		for _, v := range args[0] {
+			if v == 'U' {
+				UD++
+			} else if v == 'D' {
+				UD--
+			} else if v == 'R' {
+				RL++
+			} else if v == 'L' {
+				RL--
+			}
+	
+			if UD == 0 && RL == 0 {
+				f = "true"
+			} else {
+				f = "false"
+			}
+		}
+	
+		for _, v := range f {
+			z01.PrintRune(v)
+		}
+		z01.PrintRune('\n')
+	}
+	48)func TwoSum(nums []int, target int) []int {
+
+		a := []int{0, 0}
+		for i, v := range nums {
+			for j, g := range nums {
+				if v+g == target && i != j {
+					a[0] = j
+					a[1] = i
+					return a
+				}
+			}
+		}
+		return nil
+	
+	}
+	49)func main() {
+
+		arg := os.Args[1:]
+	
+		if len(arg) == 1 {
+			str := arg[0]
+			var count int
+			var arr []int
+			check := true
+	
+			for len(str) > 0 {
+				count, str = counter(rune(str[0]), str)
+				arr = append(arr, count)
+			}
+			for i, v := range arr {
+				for j, k := range arr {
+					if v == k && i != j {
+	
+						check = false
+						break
+					}
+				}
+	
+			}
+			fmt.Println(check)
+		} else {
+			fmt.Println()
+		}
+	
+	}
+	func counter(c rune, s string) (int, string) {
+		count := 0
+		str := ""
+		for _, v := range s {
+			if v == c {
+				count++
+	
+			} else {
+				str = str + string(v)
+			}
+		}
+		return count, str
+	}
+	func myAppend(arr []string, newString string) []string {
+		count := 0
+		for range arr {
+			count++
+		}
+	
+		newArr := make([]string, count+1)
+		for index, element := range arr {
+			newArr[index] = element
+		}
+	
+		newArr[count] = newString
+		return newArr
+	}

@@ -1,0 +1,141 @@
+9)func DOOP() {
+	func modulo(a, b int) int {
+		return a % b
+	}
+	
+	func divide(a, b int) int {
+		if b == 0 {
+			return 0
+		}
+		return a / b
+	}
+	
+	func substract(a, b int) int {
+		return a - b
+	}
+	
+	func add(a, b int) int {
+		return a + b
+	}
+	
+	func multiply(a, b int) int {
+		return a * b
+	}
+	func doop(a int, b int, op string) (int, string) {
+		var res int
+		switch op {
+		case "+":
+			res = add(a, b)
+	
+		case "-":
+			res = substract(a, b)
+	
+		case "*":
+			res = multiply(a, b)
+	
+		case "/":
+			if b == 0 {
+				return 0, "No division by 0"
+			} else {
+				res = divide(a, b)
+			}
+		case "%":
+			if b == 0 {
+				return 0, "No modulo by 0"
+			} else {
+				res = modulo(a, b)
+			}
+		}
+		return res, ""
+	}
+	
+_________________________________
+10)func ISPOWEROF2() {
+	arg := os.Args[1:]
+	if len(arg) == 1 {
+		x, err := strconv.Atoi(arg[0])
+		if err != nil {
+			fmt.Println(err.Error())
+		} else if x != 0 && (x&(x-1)) == 0 {
+			fmt.Println(true)
+		} else {
+			fmt.Println(false)
+		}
+
+	} else {
+		fmt.Println()
+	}
+}
+_________________________________
+10)func ISPOWEROFF() {
+	if len(os.Args) == 2 {
+		x, err := strconv.Atoi(os.Args[1])
+		if err != nil {
+			fmt.Println(err.Error())
+		} else {
+			for x%2 == 0 {
+				if x == 0 {
+					break
+				}
+				x = x / 2
+			}
+			if x == 1 {
+				fmt.Println(true)
+			}
+			if x == 0 || x != 1 {
+				fmt.Println(false)
+			}
+		}
+	} else {
+		fmt.Println()
+	}
+}
+_________________________________
+11)func UNION() {
+	if len(os.Args) == 3 {
+		s1 := os.Args[1]
+		s2 := os.Args[2]
+		sum := s1 + s2
+		mas := []rune(sum)
+		for i := 0; i < len(mas); i++ {
+			for k := i + 1; k < len(mas); k++ {
+				if mas[i] == mas[k] {
+					mas[k] = 0
+				}
+			}
+		}
+		fmt.Println(string(mas))
+
+	} else {
+		fmt.Println()
+	}
+}
+_____________________________________
+12)func INTER() {
+	answer := ""
+	if len(os.Args) == 3 {
+		str1 := os.Args[1]
+		str2 := os.Args[2]
+		for i := 0; i < len(str1); i++ {
+			for j := 0; j < len(str2); j++ {
+				if str2[j] == str1[i] {
+					doesNotExist := true
+					for k := range answer {
+						if str1[i] == answer[k] {
+							doesNotExist = false // str1[k] = 0
+						}
+					}
+					if doesNotExist {
+						answer += string(str1[i])
+					}
+				}
+				
+			}
+		}
+		fmt.Println(answer)
+	} else {
+		fmt.Println()
+	}
+}
+
+
