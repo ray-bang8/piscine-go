@@ -1,44 +1,53 @@
+
+
 import (
 	"fmt"
 	"os"
 )
 
-func SPLITPROG() {
-	if len(os.Args) == 3 {
-		s := Split(os.Args[1], os.Args[2])
-		fmt.Println(s)
+func split(str, charset string) []string {
+	count := 1
+	n := 0
+	if charset == "" {
+		empty := make([]string, len(str))
+		i := 0
+		for v := range str {
+			empty[i] = string(str[v])
+			i++
+		}
+		return empty
+
+	}
+	for i := 0; i <= len(str)-len(charset); i++ {
+		if str[i:i+len(charset)] == charset {
+			i = i + len(charset) - 1
+			count++
+		}
+	}
+	output := make([]string, count)
+	countEl := 0
+	for i := 0; i < len(str); i++ {
+
+		if count == countEl+1 {
+			output[countEl] = str[n:]
+			break
+		}
+		if str[i:i+len(charset)] == charset {
+			output[countEl] = str[n:i]
+			i = i + len(charset) - 1
+			n = i + 1
+			countEl++
+		}
+	}
+	return output
+}
+func SPLITMAIN() {
+	args := os.Args[1:]
+	str := args[0]
+	charset := args[1]
+	if len(args) == 2 {
+		fmt.Println(split(str, charset))
 	} else {
 		fmt.Println()
 	}
-}
-
-func Split(s1, s2 string) []string {
-	resp := []string{}
-	new := ""
-	for i := 0; i < len(s1); i++ {
-		if Check(s1, s2, i) {
-			if new != "" {
-				resp = append(resp, new)
-				new = ""
-				i = i + len(s2) - 1
-			}
-		} else {
-			new = new + string(s1[i])
-		}
-	}
-	if new != "" {
-		resp = append(resp, new)
-	}
-	return resp
-}
-func Check(s1, s2 string, i int) bool {
-	j := 0
-	for j < len(s1) && j < len(s2) {
-		if s1[i] != s2[j] {
-			return false
-		}
-		i++
-		j++
-	}
-	return true
 }

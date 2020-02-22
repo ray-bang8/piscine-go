@@ -1,11 +1,14 @@
+
+
 import (
-	"fmt"
 	"os"
+
+	"github.com/01-edu/z01"
 )
 
 func INTER() {
 	answer := ""
-	if len(os.Args) == 3 {
+	if len(os.Args[1:]) == 2 {
 		str1 := os.Args[1]
 		str2 := os.Args[2]
 		for i := 0; i < len(str1); i++ {
@@ -24,8 +27,11 @@ func INTER() {
 
 			}
 		}
-		fmt.Println(answer)
+		for i := range answer {
+			z01.PrintRune(rune(answer[i]))
+		}
+		z01.PrintRune(10)
 	} else {
-		fmt.Println()
+		z01.PrintRune(10)
 	}
 }

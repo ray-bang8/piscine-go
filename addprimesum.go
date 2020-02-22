@@ -1,6 +1,5 @@
-import (
-	"fmt"
-	"os"
+
+	"github.com/01-edu/z01"
 )
 
 func ADDPRIMESUM() {
@@ -10,7 +9,8 @@ func ADDPRIMESUM() {
 		printPrime(nbr)
 
 	} else {
-		fmt.Println("0")
+		z01.PrintRune('0')
+		z01.PrintRune(10)
 	}
 }
 
@@ -26,7 +26,7 @@ func IsPrime(value int) bool {
 	return true
 }
 
-func printPrime(n int) int {
+func printPrime(n int) {
 	sum := 0
 	for i := 2; i <= n; i++ {
 		if IsPrime(i) {
@@ -36,8 +36,12 @@ func printPrime(n int) int {
 		}
 
 	}
-	fmt.Println(sum)
-	return sum
+	res := itoa(sum)
+	for i := range res {
+		z01.PrintRune(rune(res[i]))
+	}
+	z01.PrintRune(10)
+
 }
 func Atoi(s string) int {
 	min := 0
@@ -62,4 +66,31 @@ func Atoi(s string) int {
 		res = -res
 	}
 	return res
+}
+func itoa(n int) string {
+	var ost int
+	s := ""
+	if n == 0 {
+		return "0"
+	}
+	min := 0
+	for {
+		if n == 0 {
+			break
+		}
+		if n < 0 {
+			ost = -(n % 10)
+		} else {
+			ost = n % 10
+		}
+		s = string(ost+48) + s
+		if n/10 == 0 && n < 0 {
+			min++
+		}
+		n = n / 10
+	}
+	if min == 1 {
+		s = "-" + s
+	}
+	return s
 }

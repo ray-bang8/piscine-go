@@ -1,5 +1,7 @@
+
+
 func Itoa(nbr int) string {
-	result = ""
+	result := ""
 	t := 1
 
 	if nbr < 0 {
@@ -19,3 +21,4 @@ func Itoa(nbr int) string {
 
 	return result
 }
+

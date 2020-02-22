@@ -1,47 +1,62 @@
-package main
 
 import (
-	"fmt"
 	"os"
 	"strconv"
+
+	"github.com/01-edu/z01"
 )
 
-func ISPOWEROFF() {
+func Ispower022() {
 	if len(os.Args) == 2 {
-		x, err := strconv.Atoi(os.Args[1])
-		if err != nil {
-			fmt.Println(err.Error())
-		} else {
-			for x%2 == 0 {
-				if x == 0 {
-					break
-				}
-				x = x / 2
+		x, _ := strconv.Atoi(os.Args[1])
+		prTrue := "true"
+		prFalse := "false"
+
+		for x%2 == 0 {
+			if x == 0 {
+				break
 			}
-			if x == 1 {
-				fmt.Println(true)
-			}
-			if x == 0 || x != 1 {
-				fmt.Println(false)
+			x = x / 2
+		}
+		if x == 1 {
+			for i := range prTrue {
+				z01.PrintRune(rune(prTrue[i]))
 			}
 		}
+		if x == 0 || x != 1 {
+			for i := range prFalse {
+				z01.PrintRune(rune(prFalse[i]))
+			}
+		}
+		z01.PrintRune(10)
+
 	} else {
-		fmt.Println()
+		z01.PrintRune(10)
 	}
 }
-func main() {
+
+func ispowerof2() {
 	arg := os.Args[1:]
 	if len(arg) == 1 {
 		x, err := strconv.Atoi(arg[0])
 		if err != nil {
-			fmt.Println(err.Error())
+			z01.PrintRune(10)
+			return
 		} else if x != 0 && (x&(x-1)) == 0 {
-			fmt.Println(true)
+			z01.PrintRune('t')
+			z01.PrintRune('r')
+			z01.PrintRune('u')
+			z01.PrintRune('e')
 		} else {
-			fmt.Println(false)
+			z01.PrintRune('f')
+			z01.PrintRune('a')
+			z01.PrintRune('l')
+			z01.PrintRune('s')
+			z01.PrintRune('e')
 		}
-
+		z01.PrintRune(10)
 	} else {
-		fmt.Println()
+		z01.PrintRune(10)
 	}
+
 }

@@ -1,34 +1,42 @@
-func tabmult() {
-    if len(os.Args[1:]) != 1 {
-        z01.PrintRune('\n')
-        return
-    } else {
-        a, _ := strconv.Atoi(os.Args[1])
-        b := os.Args[1]
-        if a < 0 {
-            z01.PrintRune('\n')
-            return
-        }
-        for i := 1; i <= 9; i++ {
-            res := i * a
-            z01.PrintRune(rune(i + 48))
-            z01.PrintRune(' ')
-            z01.PrintRune('x')
-            z01.PrintRune(' ')
-            for _, v := range b {
-                z01.PrintRune(v)
-            }
-            z01.PrintRune(' ')
-            z01.PrintRune('=')
-            z01.PrintRune(' ')
-            str := strconv.Itoa(res)
-            for _, v := range str {
-                z01.PrintRune(v)
-            }
-            z01.PrintRune('\n')
 
-        }
-    }
+import (
+	"os"
+	"strconv"
+
+	"github.com/01-edu/z01"
+)
+
+func tabmult() {
+	if len(os.Args[1:]) != 1 {
+		z01.PrintRune('\n')
+		return
+	} else {
+		a, _ := strconv.Atoi(os.Args[1])
+		b := os.Args[1]
+		if a < 0 {
+			z01.PrintRune('\n')
+			return
+		}
+		for i := 1; i <= 9; i++ {
+			res := i * a
+			z01.PrintRune(rune(i + 48))
+			z01.PrintRune(' ')
+			z01.PrintRune('x')
+			z01.PrintRune(' ')
+			for _, v := range b {
+				z01.PrintRune(v)
+			}
+			z01.PrintRune(' ')
+			z01.PrintRune('=')
+			z01.PrintRune(' ')
+			str := it(res)
+			for _, v := range str {
+				z01.PrintRune(v)
+			}
+			z01.PrintRune('\n')
+
+		}
+	}
 }
 func Atoi(s string) int {
 	len := 0
@@ -60,4 +68,31 @@ func Atoi(s string) int {
 		final = -final
 	}
 	return final
+}
+func it(n int) string {
+	var ost int
+	s := ""
+	if n == 0 {
+		return "0"
+	}
+	min := 0
+	for {
+		if n == 0 {
+			break
+		}
+		if n < 0 {
+			ost = -(n % 10)
+		} else {
+			ost = n % 10
+		}
+		s = string(ost+48) + s
+		if n/10 == 0 && n < 0 {
+			min++
+		}
+		n = n / 10
+	}
+	if min == 1 {
+		s = "-" + s
+	}
+	return s
 }

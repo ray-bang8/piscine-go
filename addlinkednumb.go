@@ -1,3 +1,5 @@
+
+
 import "strconv"
 
 func AddLinkedNumbers(num1, num2 *NodeAddL) *NodeAddL {

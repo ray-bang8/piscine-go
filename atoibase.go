@@ -1,3 +1,5 @@
+
+
 func AtoiBase(s string, base string) int {
 	noValid := ""
 
@@ -6,11 +8,11 @@ func AtoiBase(s string, base string) int {
 		return Atoi(s)
 	}
 
-	if StrLen(base) < 2 {
+	if len(base) < 2 {
 		noValid = "NV"
 	} else {
-		for i := 0; i < StrLen(base)-1; i++ {
-			for j := i + 1; j < StrLen(base); j++ {
+		for i := 0; i < len(base)-1; i++ {
+			for j := i + 1; j < len(base); j++ {
 				if base[i] == base[j] ||
 					base[i] == '+' || base[i] == '-' ||
 					base[j] == '+' || base[j] == '-' {
@@ -33,12 +35,12 @@ func PrintNumberAtoiBase(nbr string, base string) int {
 	arrayNbr := []rune(nbr)
 	result := 0
 
-	for i := 0; i < StrLen(nbr); i++ {
-		for j := 0; j < StrLen(base); j++ {
+	for i := 0; i < len(nbr); i++ {
+		for j := 0; j < len(base); j++ {
 
 			if arrayNbr[i] == arrayBase[j] {
 
-				result += j * (Power(StrLen(base), StrLen(nbr)-i-1))
+				result += j * (Power(len(base), len(nbr)-i-1))
 			}
 		}
 	}
@@ -58,4 +60,35 @@ func Power(n int, m int) int {
 		}
 	}
 	return n
+}
+func Atoi(s string) int {
+	min := 0
+	plu := 0
+	sum := 0
+	for i, v := range s {
+		if s[i] >= '0' && s[i] <= '9' {
+			num := 0
+			for j := '0'; j < v; j++ {
+				num++
+			}
+			sum = sum*10 + num
+		} else if s[i] == '-' && i == 0 {
+			min++
+		} else if s[i] == '+' && i == 0 {
+			plu++
+		} else {
+			return 0
+		}
+	}
+	if min == 1 {
+		sum = -sum
+	}
+	if min != 1 && sum < 0 {
+		return 0
+	}
+	if min == 1 && sum > 0 {
+		return 0
+	}
+	return sum
+
 }

@@ -1,4 +1,11 @@
-func REPEATALPHA() {
+
+import (
+	"os"
+
+	"github.com/01-edu/z01"
+)
+
+func REPEATEALPHA() {
 	arg := os.Args
 	count := 0
 	if len(arg) == 2 {
@@ -18,6 +25,8 @@ func REPEATALPHA() {
 				for ; count > 0; count-- {
 					z01.PrintRune(arr[i])
 				}
+			} else {
+				z01.PrintRune(rune(arr[i]))
 			}
 		}
 		z01.PrintRune('\n')

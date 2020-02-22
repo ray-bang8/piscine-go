@@ -1,3 +1,11 @@
+
+
+import (
+	"fmt"
+
+	"github.com/01-edu/z01"
+)
+
 func PrintMemory(arr [10]int) {
 	index := 0
 	for i := 0; i < len(arr); i++ {

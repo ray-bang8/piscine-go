@@ -1,6 +1,12 @@
-func BRACKEts() {
+
+import (
+	"fmt"
+	"os"
+)
+
+func BRACKETS() {
 	if len(os.Args) == 1 {
-		z01.PrintRune('\n')
+		fmt.Println()
 		return
 	}
 
@@ -9,10 +15,10 @@ func BRACKEts() {
 		var stack []rune
 
 		if os.Args[i] == "" {
-			PrintStr("OK")
-			z01.PrintRune('\n')
+
+			fmt.Println("OK")
 		} else {
-			for j := 0; j < StrLen(os.Args[i]); j++ {
+			for j := 0; j < len(os.Args[i]); j++ {
 				if arr[j] == '(' || arr[j] == '[' || arr[j] == '{' {
 					stack = append(stack, arr[j])
 				} else {
@@ -36,41 +42,13 @@ func BRACKEts() {
 			}
 
 			if len(stack) == 0 {
-				PrintStr("OK")
-				z01.PrintRune('\n')
+
+				fmt.Println("OK")
 			} else {
-				PrintStr("Error")
-				z01.PrintRune('\n')
+
+				fmt.Println("Error")
 			}
 
 		}
 	}
-}
-func PrintStr(str string) {
-
-	stringi := []rune(str)
-
-	for _, letter := range stringi {
-
-		z01.PrintRune(letter)
-	}
-
-}
-func StrLen(str string) int {
-	m := 0
-	for range str {
-		m++
-	}
-	return m
-}
-_____________________-
-29)func ListSize(l *List) int {
-
-	n := l.Head
-	size := 0
-	for n != nil {
-		size++
-		n = n.Next
-	}
-	return size
 }

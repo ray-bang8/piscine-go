@@ -1,4 +1,4 @@
-func DOOP() {
+func main() {
 	func modulo(a, b int) int {
 		return a % b
 	}
@@ -50,7 +50,7 @@ func DOOP() {
 		return res, ""
 	}
 	
-	func main() {
+func main() {
 	
 		args := os.Args[1:]
 	
@@ -86,6 +86,7 @@ func DOOP() {
 			}
 		}
 	}
+	
 func Atoi(s string) int {
 	len := 0
 	for range s {

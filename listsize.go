@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type NodeL struct {
 	Data interface{}
 	Next *NodeL
@@ -21,7 +19,7 @@ func ListSize(l *List) int {
 	}
 	return c
 }
-
+___________________
 func ListPushBack(l *List, data interface{}) {
 	n := &NodeL{Data: data}
 	if l.Head == nil {
@@ -34,20 +32,4 @@ func ListPushBack(l *List, data interface{}) {
 		}
 		next.Next = n
 	}
-}
-
-func main() {
-	link := &List{}
-	// ListPushBack(link, 1)
-	// ListPushBack(link, "Hello")
-	// ListPushBack(link, "There")
-	// ListPushBack(link, "There")
-	// ListPushBack(link, "There")
-	// ListPushBack(link, "There")
-	// ListPushBack(link, "There")
-	// ListPushBack(link, "There")
-	// ListPushBack(link, "There")
-	// ListPushBack(link, "There")
-	size := ListSize(link)
-	fmt.Println(size)
 }

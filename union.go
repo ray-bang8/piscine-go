@@ -1,24 +1,36 @@
+
+
 import (
-	"fmt"
 	"os"
+
+	"github.com/01-edu/z01"
 )
 
 func UNION() {
-	if len(os.Args) == 3 {
-		s1 := os.Args[1]
-		s2 := os.Args[2]
-		sum := s1 + s2
-		mas := []rune(sum)
-		for i := 0; i < len(mas); i++ {
-			for k := i + 1; k < len(mas); k++ {
-				if mas[i] == mas[k] {
-					mas[k] = 0
-				}
+
+	if len(os.Args[1:]) == 2 {
+		fin := os.Args[1] + os.Args[2]
+		//fmt.Println(fin)
+		temp := []rune{}
+		for _, k := range fin {
+			if isUNique(k, temp) {
+				temp = append(temp, k)
 			}
 		}
-		fmt.Println(string(mas))
-
+		for _, v := range temp {
+			z01.PrintRune(v)
+		}
+		z01.PrintRune(10)
 	} else {
-		fmt.Println()
+		z01.PrintRune(10)
 	}
+}
+
+func isUNique(r rune, s []rune) bool {
+	for _, k := range s {
+		if k == r {
+			return false
+		}
+	}
+	return true
 }

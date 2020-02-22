@@ -1,34 +1,64 @@
+
 import (
-	"fmt"
 	"os"
-	"strings"
+
+	"github.com/01-edu/z01"
 )
 
 func ROSTRING() {
-
-	new := ""
-	new2 := ""
-	if len(os.Args) == 2 {
-		str := os.Args[1]
-		for i := 0; i < len(str); i++ {
-			str = standart(str)
-			if str[0] != 32 {
-				for v := 0; v < len(str); v++ {
-
-					if str[v] == 32 {
-						new = str[:v]
-						new2 = str[v:]
-						str = new2 + " " + new
-						fmt.Println(standart(str))
-						return
-					}
-				}
-			}
-		}
+	if len(os.Args[1:]) != 1 {
+		z01.PrintRune('\n')
+		return
 	} else {
-		fmt.Println()
+		words := splitWhiteSpaces(os.Args[1])
+
+		//moving all words to 1 position to the left
+		newWords := make([]string, len(words))
+		j := 0
+		for i := 1; i < len(words); i++ {
+			newWords[j] = words[i]
+			j++
+		}
+		newWords[j] = words[0]
+
+		//printing the result
+		res := newWords[0]
+		for i := 1; i < len(words); i++ {
+			res = res + " " + newWords[i]
+		}
+
+		for _, v := range res {
+			z01.PrintRune(v)
+		}
+		z01.PrintRune('\n')
 	}
 }
-func standart(s string) string {
-	return strings.Join(strings.Fields(strings.TrimSpace(s)), " ")
+
+func splitWhiteSpaces(s string) []string {
+	prev := ' '
+	count := 0
+	for _, v := range s {
+		if v != ' ' && prev == ' ' {
+			count++
+		}
+		prev = v
+	}
+	ar := make([]string, count)
+	i := 0
+	word := ""
+	for _, v := range s {
+		if v == ' ' && word != "" {
+			ar[i] = word
+			word = ""
+			if count != 1 {
+				i++
+			}
+		} else if v != ' ' {
+			word += string(v)
+		}
+	}
+	if word != "" {
+		ar[i] = word
+	}
+	return ar
 }

@@ -1,60 +1,39 @@
-import (
+
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func FPRIME() {
-	if len(os.Args) == 2 {
-		v := Atoi(os.Args[1])
-		count := 0
-		l := append(PF(v))
-		for i := 0; i < len(l); i++ {
-			count++
-			if count >= i && i > 0 {
-				fmt.Print("*")
-			}
-			fmt.Print(l[i])
-		}
-		fmt.Println()
-	} else {
-		fmt.Println()
-	}
-}
-func PF(x int) []rune {
-	f := []rune{}
-	c := 2
-	for c <= x {
-		if x%c == 0 {
-			f = append(f, rune(c))
-			x = x / c
-		} else {
-			c++
-		}
+	div := 2 //Объявить делитель
 
+	arr := os.Args[1:]
+
+	if len(arr) > 1 || len(arr) < 1 {
+		fmt.Println()
+		return
 	}
-	return f
-}
-func Atoi(s string) int {
-	min := 0
-	plu := 0
-	res := 0
-	for i, v := range s {
-		if v >= '0' && v <= '9' {
-			num := 0
-			for g := '0'; g < v; g++ {
-				num++
+	x, _ := strconv.Atoi(arr[0])
+
+	if x == 1 { //Если приходит 1, то отвечаем 1
+		fmt.Println()
+		return
+	}
+	if x < 1 { //Если меньше 1, то выходим
+		fmt.Println()
+		return
+	}
+	for div <= x { //Пока делитель не равен и меньше числа
+		if x%div == 0 { //Если число делится на делитель без остатка
+			fmt.Print(div) //Напечатать число
+			if x == div {  //Если делитель равен числу
+				fmt.Println() //Новая строка
+				return        //Выход
 			}
-			res = res*10 + num
-		} else if v == '-' && i == 0 {
-			min++
-		} else if v == '+' && i == 0 {
-			plu++
-		} else {
-			return 0
+			fmt.Print("*") //Пишем знак умножения
+			x /= div       //Число делим на делитель
+			div = 1        //Делитель равняем 1
 		}
+		div++ //Увеличиваем делитель
 	}
-	if min == 1 {
-		res = -res
-	}
-	return res
 }
