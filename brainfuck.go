@@ -1,7 +1,15 @@
-func BRAINFUCK() {
+package main
 
-	if len(os.Args) == 1 {
-		fmt.Println()
+import (
+	"os"
+
+	"github.com/01-edu/z01"
+)
+
+func main() {
+
+	if ArrayStrLength(os.Args) == 1 {
+		PrintStr("\n")
 		return
 	}
 
@@ -13,7 +21,7 @@ func BRAINFUCK() {
 	j := 0
 
 	for j < 2048 {
-		for i < len(arg) {
+		for i < ArrayRuneLength(arg) {
 			switch arg[i] {
 			case '>':
 				j++
@@ -26,7 +34,7 @@ func BRAINFUCK() {
 			case '-':
 				*p--
 			case '.':
-				fmt.Println(string(*p))
+				PrintStr(string(*p))
 			case '[':
 				cont := 0
 
@@ -59,3 +67,31 @@ func BRAINFUCK() {
 		}
 		j = 2048
 	}
+}
+func ArrayStrLength(str []string) int {
+
+	length := 0
+
+	for range str {
+		length++
+	}
+
+	return length
+}
+func PrintStr(str string) {
+	arrayRune := []rune(str)
+	for _, s := range arrayRune {
+		z01.PrintRune(s)
+	}
+	// z01.PrintRune('\n')
+}
+func ArrayRuneLength(str []rune) int {
+
+	length := 0
+
+	for range str {
+		length++
+	}
+
+	return length
+}

@@ -1,9 +1,11 @@
+
+
 import (
 	"fmt"
 	"os"
 )
 
-func balancedstring() {
+func BALANCESTRING() {
 	input := os.Args[1:]
 	if len(input) != 1 {
 		fmt.Println()

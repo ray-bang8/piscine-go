@@ -1,3 +1,4 @@
+
 func ListRemoveIf(l *List, data_ref interface{}) {
 	temp := l.Head
 	prev := l.Head

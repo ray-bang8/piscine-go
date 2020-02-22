@@ -1,6 +1,3 @@
-package main
-
-import "fmt"
 
 func ItoaBase(value, base int) string {
 	res := ""
@@ -12,9 +9,3 @@ func ItoaBase(value, base int) string {
 
 }
 
-func main() {
-	baseString := "0123456789ABCDEF"
-	s := ItoaBase(123456789, len(baseString))
-	fmt.Println(s)
-
-}

@@ -1,4 +1,3 @@
-package main
 
 type NodeL struct {
 	Data interface{}
@@ -19,17 +18,15 @@ func ListSize(l *List) int {
 	}
 	return c
 }
-___________________
-func ListPushBack(l *List, data interface{}) {
-	n := &NodeL{Data: data}
+
+func ListPushBack(l *List, x interface{}) {
+	n := &NodeL{Data: x}
+
 	if l.Head == nil {
 		l.Head = n
-		return
+		l.Tail = l.Head
 	} else {
-		next := l.Head
-		for next.Next != nil {
-			next = next.Next
-		}
-		next.Next = n
+		l.Tail.Next = n
+		l.Tail = n
 	}
 }

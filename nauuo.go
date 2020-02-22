@@ -1,3 +1,5 @@
+package main
+
 func Nauuo(a, b, c int) string {
 	str := ""
 	if a > (b + c) {
@@ -11,3 +13,4 @@ func Nauuo(a, b, c int) string {
 	}
 
 	return str
+}

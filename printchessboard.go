@@ -1,31 +1,58 @@
-func printchessboard() {
-	if len(os.Args[1:]) != 2 {
-		PrintErr()
-		return
-	} else {
-		col, e := strconv.Atoi(os.Args[1])
-		line, er := strconv.Atoi(os.Args[2])
-		if e != nil || er != nil {
-			PrintErr()
-			return
+
+
+import (
+	"os"
+	"strconv"
+
+	"github.com/01-edu/z01"
+)
+
+func PRINTCHESSBOARD() {
+
+	arg := os.Args[1:]
+	er := "Error"
+	if len(arg) == 2 {
+
+		col, err1 := strconv.Atoi(arg[0])
+		if err1 != nil {
+			for i := range er {
+				z01.PrintRune(rune(er[i]))
+			}
+			z01.PrintRune(10)
+		}
+		row, err2 := strconv.Atoi(arg[1])
+		if err2 != nil {
+			for i := range er {
+				z01.PrintRune(rune(er[i]))
+			}
+			z01.PrintRune(10)
 		}
 
-		for l := 1; l <= line; l++ {
-			for c := 1; c <= col; c++ {
-				if (isOdd(c) && isOdd(l)) || (!isOdd(c) && !isOdd(l)) {
-					z01.PrintRune('#')
+		for i := 1; i <= row; i++ {
+			for j := 1; j <= col; j++ {
+				if i%2 != 0 {
+					if j%2 != 0 {
+						z01.PrintRune('#')
+					} else {
+						z01.PrintRune(' ')
+					}
 				} else {
-					z01.PrintRune(' ')
+					if j%2 != 0 {
+						z01.PrintRune(' ')
+					} else {
+						z01.PrintRune('#')
+					}
 				}
+
 			}
 			z01.PrintRune('\n')
 		}
 
+	} else {
+		for i := range er {
+			z01.PrintRune(rune(er[i]))
+		}
+		z01.PrintRune(10)
 	}
-}
-func isOdd(n int) bool {
-	if n%2 == 0 {
-		return false
-	}
-	return true
+
 }

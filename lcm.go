@@ -1,3 +1,5 @@
+package main
+
 func Lcm(first, second int) int {
 	n1 := first
 	n2 := second

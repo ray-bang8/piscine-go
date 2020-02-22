@@ -1,6 +1,5 @@
-import "fmt"
 
-func Anagram(str1, str2 string) bool {
+func IsAnagram(str1, str2 string) bool {
 
 	if CountLen(str1) != CountLen(str2) {
 		return false
@@ -25,7 +24,7 @@ func Anagram(str1, str2 string) bool {
 			}
 		}
 	}
-	fmt.Println(string(newarg))
+
 	return CountLen(str2) == count
 
 }

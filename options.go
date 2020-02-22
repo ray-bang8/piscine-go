@@ -5,60 +5,34 @@ import (
 	"os"
 )
 
-func ErrorHandle(i int) {
-	switch i {
-	case 0:
-		fmt.Println("options: abcdefghijklmnopqrstuvwxyz")
-	case 1:
-		fmt.Println("Invalid Option")
-	}
-}
-
-func Replace(r rune, pattern string) string {
-	index := 0
-	res := ""
-	sample := "******zy xwvutsrq ponmlkji hgfedcba"
-	for i, v := range sample {
-		if r == v {
-			index = i
-		}
-	}
-	for j, k := range pattern {
-		if j == index {
-			k = '1'
-		}
-		res = res + string(k)
-	}
-	return res
-}
-
 func main() {
-	arg := os.Args[1:]
-	pattern := "00000000 00000000 00000000 00000000"
-	var flag bool
-	if len(arg) < 1 {
-		ErrorHandle(0)
+	table := "00000000 00000000 00000000 00000000"
+	options := "******zy xwvutsrq ponmlkji hgfedcba"
+	help := "options: abcdefghijklmnopqrstuvwxyz"
+	invalid := "Invalid Option"
+	if len(os.Args) == 1 {
+		fmt.Println(help)
+		return
 	}
-	for _, vv := range arg {
-		for i, v := range vv {
-			if i == 0 && v == '-' {
-				flag = true
-			}
-			if vv[i] == '-' && vv[i+1] == 'h' && i < len(vv) {
-				ErrorHandle(0)
+	for _, k := range os.Args[1:] {
+		for j, l := range k {
+			if l == 'h' && j == 1 {
+				fmt.Println(help)
 				return
 			}
-			if flag {
-				if v >= 'a' && v <= 'z' {
-					res := Replace(v, pattern)
-					pattern = res
-				} else if v == '-' {
-				} else {
-					ErrorHandle(1)
-					return
+			for i, m := range options {
+				for range table {
+					if l >= 'a' && l <= 'z' || l == '-' {
+						if l == m {
+							table = table[:i] + "1" + table[i+1:]
+						}
+					} else {
+						fmt.Println(invalid)
+						return
+					}
 				}
 			}
 		}
 	}
-	fmt.Println(pattern)
+	fmt.Println(table)
 }
