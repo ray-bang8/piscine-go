@@ -46,3 +46,12 @@ func GCD2() {
 		fmt.Println(gcd)
 	}
 }
+_____________________
+package gcd
+
+func gcd(x, y int) int{
+  for y != 0 {
+    x, y = y, x%y
+  }
+  return x
+}
