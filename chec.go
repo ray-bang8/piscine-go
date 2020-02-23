@@ -16,7 +16,7 @@ func main() {
 	}
 
 }
-b := 0
+
 a, err := strconv.Atoi(os.Args[0])
 if err != nil {
 	b = 0
