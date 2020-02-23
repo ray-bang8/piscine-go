@@ -38,3 +38,18 @@ func Itoa(n int) string { // better
 	}
 	return res
 }
+__________________________________________
+func Itoa(n int) string {
+	count := 0
+	for n > 0 {
+		count++
+		n = n/10
+	}
+	a := make([]rune, count)
+	i := 0
+	for n > 0 {
+		a[i] = n%10
+		n = n/10
+	}
+	for 
+}
