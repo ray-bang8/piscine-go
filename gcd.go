@@ -15,7 +15,7 @@ func GCD() {
 		fmt.Println(gcd(s1, s2))
 
 	} else {
-		z01.PrintRune('\n')
+		fmt.Println()
 	}
 }
 
@@ -28,7 +28,7 @@ func gcd(a, b int) int {
 ------------------------------------
 func GCD2() {
 	if len(os.Args[1:]) != 2 {
-		z01.PrintRune('\n')
+		fmt.Println()
 		return
 	} else {
 		min, _ := strconv.Atoi(os.Args[1])

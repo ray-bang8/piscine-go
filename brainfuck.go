@@ -13,7 +13,8 @@ func main() {
 		return
 	}
 
-	arr := make([]byte, 2048)
+	// arr := make([]byte, 2048)
+	var arr [2048]byte
 	p := &arr[0]
 	arg := []rune(os.Args[1])
 

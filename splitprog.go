@@ -1,10 +1,5 @@
 
 
-import (
-	"fmt"
-	"os"
-)
-
 func split(str, charset string) []string {
 	count := 1
 	n := 0
@@ -41,13 +36,14 @@ func split(str, charset string) []string {
 	}
 	return output
 }
-func SPLITMAIN() {
-	args := os.Args[1:]
-	str := args[0]
-	charset := args[1]
-	if len(args) == 2 {
-		fmt.Println(split(str, charset))
-	} else {
-		fmt.Println()
-	}
-}
+
+// func SPLITMAIN() {
+// 	args := os.Args[1:]
+// 	str := args[0]
+// 	charset := args[1]
+// 	if len(args) == 2 {
+// 		fmt.Println(split(str, charset))
+// 	} else {
+// 		fmt.Println()
+// 	}
+// }

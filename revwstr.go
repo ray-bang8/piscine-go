@@ -1,57 +1,60 @@
+package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/01-edu/z01"
 )
 
 func REVWSTR() {
-
 	if len(os.Args) == 2 {
-		str := SplitWhiteSpaces(os.Args[1])
+		word := ""
+		str := os.Args[1]
 		for i := len(str) - 1; i >= 0; i-- {
-			// fmt.Print(string(str[i]) + " ")
-			for j := range str[i] {
-				z01.PrintRune(rune(str[i][j]))
+			if str[i] == ' ' && word != "" {
+				for _, v := range word {
+					z01.PrintRune(v)
 
-			}
-			if i != 0 {
-				z01.PrintRune(32)
+				}
+				word = ""
+				if i != 0 {
+					z01.PrintRune(32)
+				}
+			} else if str[i] != ' ' {
+				word = string(str[i]) + word
+
 			}
 
 		}
-		z01.PrintRune(10)
+		if word != "" {
+			for _, v := range word {
+				z01.PrintRune(v)
 
+			}
+		}
+		z01.PrintRune('\n')
 	} else {
-		fmt.Println()
+		z01.PrintRune('\n')
 	}
 }
-func SplitWhiteSpaces(str string) []string {
-	prev := ' '
-	count := 0
-	for _, v := range str {
-		if v != ' ' && prev == ' ' {
-			count++
-		}
-		prev = v
-	}
-	ar := make([]string, count)
-	i := 0
-	word := ""
-	for _, v := range str {
-		if v == ' ' && word != "" {
-			ar[i] = word
-			word = ""
-			if count != 1 {
-				i++
+______________________________
+func REVWSTR2() {
+	if len(os.Args[1:]) != 1 {
+		z01.PrintRune('\n')
+		return
+	} else {
+		s := os.Args[1]
+		res := ""
+		for i := len(s) - 1; i >= 0; i-- {
+			if s[i] == ' ' {
+				res += s[i+1:] + " "
+				s = s[:i]
 			}
-		} else if v != ' ' {
-			word += string(v)
 		}
+		res += s
+		for _, v := range res {
+			z01.PrintRune(v)
+		}
+		z01.PrintRune('\n')
 	}
-	if word != "" {
-		ar[i] = word
-	}
-	return ar
 }

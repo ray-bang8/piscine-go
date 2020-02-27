@@ -5,7 +5,7 @@ func AtoiBase(s string, base string) int {
 
 	if base == "0123456789" {
 
-		return Atoi(s)
+		return At(s)
 	}
 
 	if len(base) < 2 {
@@ -61,7 +61,7 @@ func Power(n int, m int) int {
 	}
 	return n
 }
-func Atoi(s string) int {
+func At(s string) int {
 	min := 0
 	plu := 0
 	sum := 0

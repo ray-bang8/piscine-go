@@ -82,14 +82,14 @@ func Atoi(s string) int {
 }
 func main() {
 	// 3 -> 1 -> 5
-	num1 := &NodeAddL{Num: 6}
-	num1 = pushFront(num1, 2)
-	num1 = pushFront(num1, 4)
+	num1 := &NodeAddL{Num: 5}
+	num1 = pushFront(num1, 1)
+	num1 = pushFront(num1, 3)
 
 	// 5 -> 9 -> 2
 	num2 := &NodeAddL{Num: 2}
-	num2 = pushFront(num2, 1)
-	num2 = pushFront(num2, 3)
+	num2 = pushFront(num2, 9)
+	num2 = pushFront(num2, 5)
 
 	// 9 -> 0 -> 7
 	result := AddLinkedNumbers(num1, num2)

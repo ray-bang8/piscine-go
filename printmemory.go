@@ -1,46 +1,64 @@
-
+package main
 
 import (
-	"fmt"
-
 	"github.com/01-edu/z01"
 )
 
 func PrintMemory(arr [10]int) {
-	index := 0
-	for i := 0; i < len(arr); i++ {
-		index++
-		if index == 5 || index == 9 {
-			fmt.Println()
-		}
+	for i, n := range arr {
 
-		if arr[i] != 0 {
-			// PrintNbrBase(arr[i],"0123456789ABCDEF")
-			dec2hexa(arr[i])
-			fmt.Print("00 0000 ")
-		} else {
-			fmt.Println("0000 0000")
-		}
+		s := getHex(n)
 
+		printString(s)
+
+		if (i+1)%4 == 0 {
+			z01.PrintRune('\n')
+		}
 	}
 
+	z01.PrintRune('\n')
+
+	for _, n := range arr {
+		if n >= 32 {
+			z01.PrintRune(rune(n))
+		} else {
+			z01.PrintRune('.')
+		}
+	}
+
+	z01.PrintRune('\n')
 }
 
-func dec2hexa(n int) {
-	var arr [100]rune
-	i := 0
+func getHex(n int) string {
+	base := "0123456789abcdef"
+
+	res := ""
 	for n != 0 {
-		temp := n % 16
-		if temp < 10 {
-			arr[i] = rune(temp + 48)
-			i++
-		} else {
-			arr[i] = rune(temp + 87)
-			i++
+		i := n % 16
+		res = string(base[i]) + res
+		n /= 16
+	}
+
+	res = extend(res)
+
+	return res
+}
+
+func extend(s string) string {
+	for len(s) <= 8 {
+		if len(s) == 4 {
+			s += " "
 		}
-		n = n / 16
+		s += "0"
 	}
-	for j := i - 1; j >= 0; j-- {
-		z01.PrintRune(arr[j])
+
+	return s + " "
+}
+
+func printString(s string) {
+	for _, c := range s {
+		z01.PrintRune(c)
 	}
+
+	// z01.PrintRune('\n')
 }

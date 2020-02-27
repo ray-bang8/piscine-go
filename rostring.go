@@ -10,7 +10,7 @@ func ROSTRING() {
 		z01.PrintRune('\n')
 		return
 	} else {
-		words := splitWhiteSpaces(os.Args[1])
+		words := SPS(os.Args[1])
 
 		//moving all words to 1 position to the left
 		newWords := make([]string, len(words))
@@ -34,7 +34,7 @@ func ROSTRING() {
 	}
 }
 
-func splitWhiteSpaces(s string) []string {
+func SPS(s string) []string {
 	prev := ' '
 	count := 0
 	for _, v := range s {
