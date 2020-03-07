@@ -19,14 +19,14 @@ func ListSize(l *List) int {
 	return c
 }
 
-func ListPushBack(l *List, x interface{}) {
-	n := &NodeL{Data: x}
+// func ListPushBack(l *List, x interface{}) {
+// 	n := &NodeL{Data: x}
 
-	if l.Head == nil {
-		l.Head = n
-		l.Tail = l.Head
-	} else {
-		l.Tail.Next = n
-		l.Tail = n
-	}
-}
+// 	if l.Head == nil {
+// 		l.Head = n
+// 		l.Tail = l.Head
+// 	} else {
+// 		l.Tail.Next = n
+// 		l.Tail = n
+// 	}
+// }

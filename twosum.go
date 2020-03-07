@@ -1,6 +1,3 @@
-package main
-
-import "fmt"
 
 func TwoSum(nums []int, target int) []int {
 
@@ -17,14 +14,16 @@ func TwoSum(nums []int, target int) []int {
 	return nil
 
 }
-func main() {
-	case1 := []int{1, 2, 3, 4, 5, 6, 7, 8}
-	out := TwoSum(case1, 6)
-	fmt.Println(out)
-}
+
 func reverse(a []int) []int {
 	b := []int{0, 0}
 	b[0] = a[1]
 	b[1] = a[0]
 	return b
 }
+
+// func main() {
+// 	case1 := []int{1, 2, 3, 4, 5, 6, 7, 8}
+// 	out := TwoSum(case1, 6)
+// 	fmt.Println(out)
+// }

@@ -1,6 +1,6 @@
 func Priorprime(x int) int {
 
-	if x < 2 {
+	if x <= 2 {
 		return 0
 	}
 

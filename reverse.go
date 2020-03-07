@@ -12,3 +12,8 @@ func Reverse(node *NodeAddL) *NodeAddL {
 func PushFront(node *NodeAddL, data int) *NodeAddL {
 	return &NodeAddL{Num: data, Next: node}
 }
+
+type NodeAddL struct {
+	Next *NodeAddL
+	Num  int
+}

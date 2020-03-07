@@ -1,8 +1,6 @@
-package main
 
-import (
-	"github.com/01-edu/z01"
-)
+
+import "github.com/01-edu/z01"
 
 func PrintMemory(arr [10]int) {
 	for i, n := range arr {
@@ -62,3 +60,4 @@ func printString(s string) {
 
 	// z01.PrintRune('\n')
 }
+

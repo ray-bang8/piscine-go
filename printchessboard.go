@@ -28,8 +28,11 @@ func PRINTCHESSBARD() {
 			z01.PrintRune(10)
 		}
 		if col == 0 && row == 0 {
-			z01.PrintRune('0')
+			for _, v := range er {
+				z01.PrintRune(v)
+			}
 			z01.PrintRune(10)
+			return
 		}
 		for i := 1; i <= row; i++ {
 			for j := 1; j <= col; j++ {

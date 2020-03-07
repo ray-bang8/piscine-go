@@ -34,7 +34,7 @@ func Ispower022() {
 		z01.PrintRune(10)
 	}
 }
-
+_________________________________
 func ispowerof2() {
 	arg := os.Args[1:]
 	if len(arg) == 1 {

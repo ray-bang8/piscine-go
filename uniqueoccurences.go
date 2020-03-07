@@ -6,63 +6,42 @@ import (
 	"github.com/01-edu/z01"
 )
 
+func UniqueOccurences(s string) bool {
+	m := map[rune]int{}
+	for _, c := range s {
+		m[c]++
+	}
+
+	// fmt.Println(m)
+
+	prev := 0
+	for _, n := range m {
+		if prev != 0 && prev == n {
+			return false
+		}
+
+		prev = n
+	}
+
+	return true
+}
 func main() {
-
-	arg := os.Args[1:]
-
-	if len(arg) == 1 {
-		str := arg[0]
-		var count int
-		var arr []int
-		check := "true"
-
-		for len(str) > 0 {
-			count, str = counter(rune(str[0]), str)
-			arr = Append(arr, count)
-		}
-		for i, v := range arr {
-			for j, k := range arr {
-				if v == k && i != j {
-
-					check = "false"
-					break
-				}
+	args := os.Args[1:]
+	tr := "true"
+	fs := "false"
+	if len(args) == 1 {
+		if UniqueOccurences(args[0]) == true {
+			for _, v := range tr {
+				z01.PrintRune(v)
 			}
-
+			z01.PrintRune(10)
+		} else {
+			for _, v := range fs {
+				z01.PrintRune(v)
+			}
+			z01.PrintRune(10)
 		}
-		for i := range check {
-			z01.PrintRune(rune(check[i]))
-		}
-		z01.PrintRune(10)
 	} else {
 		z01.PrintRune(10)
 	}
-
-}
-
-func counter(c rune, s string) (int, string) {
-	count := 0
-	str := ""
-	for _, v := range s {
-		if v == c {
-			count++
-
-		} else {
-			str = str + string(v)
-		}
-	}
-	return count, str
-}
-
-func Append(narr []int, n int) []int {
-
-	newarr := make([]int, len(narr)+1)
-
-	for i, lol := range narr {
-		newarr[i] = lol
-	}
-
-	newarr[len(narr)] = n
-	return newarr
-
 }

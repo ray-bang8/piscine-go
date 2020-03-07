@@ -1,4 +1,4 @@
-func IsSameTree(p *TreeNodeM, q *TreeNodeM) bool {
+func IsSameTree(p *TreeNodeL, q *TreeNodeL) bool {
 
 	if p == nil && q == nil {
 		return true
@@ -20,4 +20,10 @@ func IsSameTree(p *TreeNodeM, q *TreeNodeM) bool {
 	}
 
 	return false
+}
+
+type TreeNodeL struct {
+	Left  *TreeNodeL
+	Val   int
+	Right *TreeNodeL
 }
